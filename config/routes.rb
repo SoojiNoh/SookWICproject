@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
+  resources :trackers
   get 'home/index'
 
   resources :tracks
-  devise_for :users
+  
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    passwords: 'users/passwords'
+  }
+  
+  
+  namespace :api do
+    resources :tracks, only: [:index, :create, :show, :update, :destroy]
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

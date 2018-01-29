@@ -11,15 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180128082637) do
+ActiveRecord::Schema.define(version: 20180129045815) do
 
-  create_table "tracks", force: :cascade do |t|
+  create_table "trackers", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "time"
+    t.string   "place"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "trackers", ["user_id"], name: "index_trackers_on_user_id"
+
+  create_table "tracks", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "tracker_id"
+    t.string   "photo_url"
+    t.string   "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "tracks", ["tracker_id"], name: "index_tracks_on_tracker_id"
   add_index "tracks", ["user_id"], name: "index_tracks_on_user_id"
 
   create_table "users", force: :cascade do |t|
