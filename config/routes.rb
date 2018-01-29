@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :senses
+  resources :sensors
   resources :trackers
   get 'home/index'
 
@@ -12,7 +14,8 @@ Rails.application.routes.draw do
   
   
   namespace :api do
-    resources :tracks, only: [:index, :create, :show, :update, :destroy]
+    resources :tracks, only: [:index, :create, :show]
+    resources :senses, only: [:index, :create, :show]
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

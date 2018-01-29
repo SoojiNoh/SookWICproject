@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129045815) do
+ActiveRecord::Schema.define(version: 20180129073501) do
+
+  create_table "senses", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "sensor_id"
+    t.string   "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "senses", ["sensor_id"], name: "index_senses_on_sensor_id"
+  add_index "senses", ["user_id"], name: "index_senses_on_user_id"
+
+  create_table "sensors", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "place"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sensors", ["user_id"], name: "index_sensors_on_user_id"
 
   create_table "trackers", force: :cascade do |t|
     t.integer  "user_id"

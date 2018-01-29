@@ -13,7 +13,7 @@ class Api::TracksController < ApplicationController
     end
     
     def create
-        track = Tracker.find(1).tracks.new
+        track = Tracker.find(params[:tracker_id]).tracks.new
         track.user = track.tracker.user
         track.time = params[:time]
         track.photo_url = params[:photo_url]

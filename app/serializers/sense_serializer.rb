@@ -1,0 +1,5 @@
+class SenseSerializer < ActiveModel::Serializer
+  attributes :id, :time
+  has_one :user
+  has_one :tracker
+end
